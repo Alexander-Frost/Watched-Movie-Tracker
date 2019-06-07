@@ -11,6 +11,8 @@ import CoreData
 
 class MyMoviesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+    // MARK: - Properties
+    
     var networkMovieController = NetworkMovieController()
     
     lazy var fetchedResultsController: NSFetchedResultsController<Movie> = {
@@ -30,6 +32,7 @@ class MyMoviesTableViewController: UITableViewController, NSFetchedResultsContro
         return fetchedResultsController
     }()
     
+    // MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,13 +97,11 @@ class MyMoviesTableViewController: UITableViewController, NSFetchedResultsContro
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let mySection = fetchedResultsController.sections?[section].name else {return nil}
-//        if mySection == "0" {
-//            return "Unwatched"
-//        } else {
-//            return "hasWatched"
-//        }
-        
-        return mySection == "0" ? "Unwatched" : "hasWatched" // may not work
+        if mySection == "0" {
+            return "Unwatched"
+        } else {
+            return "Watched"
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,6 +116,10 @@ class MyMoviesTableViewController: UITableViewController, NSFetchedResultsContro
         cell.networkMovieController = networkMovieController
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

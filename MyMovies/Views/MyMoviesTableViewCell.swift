@@ -10,6 +10,8 @@ import UIKit
 
 class MyMoviesTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     var movie: Movie? {
         didSet {
             updateViews()
@@ -17,8 +19,12 @@ class MyMoviesTableViewCell: UITableViewCell {
     }
     var networkMovieController = NetworkMovieController()
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var movieLbl: UILabel!
     @IBOutlet weak var watchedBtn: UIButton!
+    
+    // MARK: - Actions
     
     @IBAction func watchBtnPressed(_ sender: UIButton) {
         guard let movie = movie else {return}
@@ -34,6 +40,8 @@ class MyMoviesTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    // MARK: - Functions
     
     func updateViews() {
         guard let movieTitle = movie?.title,

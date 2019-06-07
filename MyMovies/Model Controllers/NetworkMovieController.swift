@@ -50,7 +50,7 @@ class NetworkMovieController {
         saveToPersistentStore()
     }
     
-    
+    // MARK: - Firebase & Core Data
     
     typealias CompletionHandler = (Error?) -> Void
     
