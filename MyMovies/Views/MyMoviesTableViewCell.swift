@@ -33,11 +33,11 @@ class MyMoviesTableViewCell: UITableViewCell {
         
         moc.performAndWait {
             networkMovieController.update(movie: movie, hasWatched: !movie.hasWatched)
-            do {
-                try moc.save()
-            } catch let saveError {
-                print("Error saving movie: \(saveError)")
-            }
+//            do {
+//                try moc.save()
+//            } catch let saveError {
+//                print("Error saving movie: \(saveError)")
+//            }
         }
     }
     
